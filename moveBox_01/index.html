@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			#myDiv{
+				position: absolute;
+				width: 200px;
+				height: 200px;
+				background-color: darkmagenta;				
+			}
+		</style>
+		
+	</head>
+	<body>
+		<div id="myDiv">
+			
+		</div>
+		
+		<script type="text/javascript">
+		
+		var x;
+		var y;
+		
+		//是否按下
+		var flag= false;
+		//获取小方块
+		var myDiv=document.querySelector("#myDiv");
+		myDiv.style.top="0px";
+		myDiv.style.left="0px";
+		//定义一个事件响应函数
+		
+		var mouseListenser = function(e){
+			
+			if(e.type=="mousedown"){
+				flag=true;
+				  x=e.pageX-parseFloat(myDiv.style.left);
+				  y=e.pageY-parseFloat(myDiv.style.top);
+			}
+			else if(e.type=="mouseup"){
+				flag=false;
+				
+			}
+		else if (e.type=="mousemove"){
+			if (flag==true){
+				//获取文档坐标（页面）,左上角为原点
+	
+				myDiv.style.left=(e.pageX-x)+"px";
+				myDiv.style.top=(e.pageY-y)+"px";
+			}
+			}
+		}
+		
+		
+		//添加mousedown的响应
+		myDiv.addEventListener("mousedown", mouseListenser, false);
+		//添加up的响应
+		document.addEventListener("mouseup", mouseListenser, false);
+		//添加mousemove响应
+		myDiv.addEventListener("mousemove", mouseListenser, false);
+		</script>
+		
+		
+	</body>
+</html>
